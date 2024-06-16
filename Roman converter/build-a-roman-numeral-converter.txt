@@ -1,0 +1,195 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Roman Converter</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./styles.css">
+</head>
+<body id="body">
+	<div class="wrapper">
+		<div class="container">
+			<h1 id="title">Roman Converter</h1>
+			<input type="number" id="number"></input>
+			<button id="convert-btn">Convert</button>
+			<div id="output">
+			</div>
+		</div>
+	</div>
+	<script src="./script.js"></script>
+</body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img {
+    vertical-align: top;
+}
+
+ul,ol,li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+html, body {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+  background: linear-gradient(to right, rgba(150,35,0,1) 47%,rgba(242,149,0,1) 54%);
+  
+  font-size: 16px;
+}
+
+/* ------------------------------------------------------ */
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    /* overflow: hidden; */
+}
+
+/* ------------------------------------------------------ */
+
+.container {
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+#body {
+    background: url(https://i.ytimg.com/vi/3hVz713AcQg/maxresdefault.jpg) no-repeat center / cover;
+    font-family: "Gideon Roman", serif;
+}
+
+#title {
+    display: block;
+    color: rgb(70,0,0);
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin: 50px 0 0;
+}
+
+#number {
+    height: 38px;
+    width: 100%;
+    background-color: rgb(240,240,240);
+    font-size: 30px;
+    outline: none;
+    padding: 0 5px;
+}
+
+#convert-btn {
+    display: block;
+    height: 40px;
+    width: 100%;
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+#output {
+    display: block;
+    height: 40px;
+    width: 100%;
+    color: rgb(70,0,0);
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 5px;
+}
+
+** end of undefined **
+
+** start of undefined **
+
+function arabicNumbersToRoman(input) {
+    const romanNumbers = {
+        full: ["I", "X", "C", "M",],
+        half: ["V", "L", "D",]
+    };
+    let romanValue = "";
+    const numbersToTransform = [...input.toString()];
+    let currentNumber = numbersToTransform.length - 1;
+
+    numbersToTransform.forEach(num => {
+        switch (+num) {
+            case 1:
+                romanValue += romanNumbers.full[currentNumber];
+                break;
+            case 2:
+                romanValue += romanNumbers.full[currentNumber] + romanNumbers.full[currentNumber];
+                break;
+            case 3 :
+                romanValue += romanNumbers.full[currentNumber] + romanNumbers.full[currentNumber] + romanNumbers.full[currentNumber];
+                break;
+            case 4:
+                romanValue += romanNumbers.full[currentNumber] + romanNumbers.half[currentNumber];
+                break;
+            case 5:
+                romanValue += romanNumbers.half[currentNumber];
+                break;
+            case 6:
+                romanValue += romanNumbers.half[currentNumber] + romanNumbers.full[currentNumber];
+                break;
+            case 7:
+                romanValue += romanNumbers.half[currentNumber] + romanNumbers.full[currentNumber] + romanNumbers.full[currentNumber];
+                break;
+            case 8:
+                romanValue += romanNumbers.half[currentNumber] + romanNumbers.full[currentNumber] + romanNumbers.full[currentNumber] + romanNumbers.full[currentNumber];
+                break;
+            case 9:
+                romanValue += romanNumbers.full[currentNumber] + romanNumbers.full[currentNumber + 1];
+        }
+        currentNumber--;
+    });
+    document.getElementById("output").innerText = romanValue;
+}
+
+document.getElementById("convert-btn").addEventListener("click", ()=> {
+  const number = document.getElementById("number").value;
+  const result = document.getElementById("output");
+
+  if (number === "") {
+    result.innerText = "Please enter a valid number";
+  } else if (number < 0) {
+    result.innerText = "Please enter a number greater than or equal to 1";
+  } else if (number > 3999) {
+    result.innerText = "Please enter a number less than or equal to 3999"
+  } else {
+    arabicNumbersToRoman(number);
+  }
+})
+
+** end of undefined **
+
