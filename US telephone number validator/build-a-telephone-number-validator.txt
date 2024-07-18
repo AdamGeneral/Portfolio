@@ -1,0 +1,272 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+	<main class="main">
+		<div class="container">
+			<div class="tel-validator wrapper">
+				<div class="tel-validator__telephone">
+					<input class="tel-validator__input" id="user-input" type="tel">
+					<div class="tel-validator-digits">
+						<button class="tel-validator-digit-1" type="button">1</button>
+						<button class="tel-validator-digit-2" type="button">2</button>
+						<button class="tel-validator-digit-3" type="button">3</button>
+						<button class="tel-validator-digit-4" type="button">4</button>
+						<button class="tel-validator-digit-5" type="button">5</button>
+						<button class="tel-validator-digit-6" type="button">6</button>
+						<button class="tel-validator-digit-7" type="button">7</button>
+						<button class="tel-validator-digit-8" type="button">8</button>
+						<button class="tel-validator-digit-9" type="button">9</button>
+						<button class="tel-validator-digit-0" type="button">0</button>
+					</div>
+				</div>
+			</div>
+			<div class="tel-validator__buttons">
+				<button id="check-btn" type="button">Check</button>
+				<button id="clear-btn" type="button">Clear</button>
+			</div>
+			<div class="tel-validator__results" id="results-div"></div>
+		</div>
+	</main>
+	<script src="./script.js"></script>
+</body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+const input = document.getElementById("user-input");
+const result = document.getElementById("results-div");
+
+document.getElementsByClassName("tel-validator-digits")[0].onclick = event => {
+  if (event.target.type === "button") {
+    input.value += event.target.textContent;
+  }
+};
+
+document.getElementById("check-btn").onclick = () => {
+  const checkRegex = /^(1\s?)?((\(\d\d\d\))|(\d\d\d))(\s|-)?\d\d\d(\s|-)?\d\d\d\d$/;
+  if (input.value === "") {
+    alert("Please provide a phone number");
+  } else if (checkRegex.test(input.value)) {
+    result.textContent = "Valid US number: " + input.value;
+    result.classList.remove("red");
+    result.classList.add("green");
+  } else {
+    result.textContent = "Invalid US number: " + input.value;
+    result.classList.remove("green");
+    result.classList.add("red");
+  }
+};
+
+document.getElementById("clear-btn").onclick = () => {
+  input.value = "";
+  result.innerText = "";
+  };
+
+** end of undefined **
+
+** start of undefined **
+
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img {
+    vertical-align: top;
+}
+
+ul,ol,li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+html, body {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-size: 16px;
+}
+
+/* ------------------------------------------------------ */
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
+}
+
+body {
+    background-color: rgb(18, 83, 83);
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.tel-validator {
+    margin: 25px 0 25px;
+}
+.tel-validator__telephone {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    height: 424px;
+    background: url("data:image/svg+xml,%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%2020010904%2F%2FEN%22%0A%20%22http%3A%2F%2Fwww.w3.org%2FTR%2F2001%2FREC-SVG-20010904%2FDTD%2Fsvg10.dtd%22%3E%0A%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20width%3D%22387.000000pt%22%20height%3D%22342.000000pt%22%20viewBox%3D%220%200%20387.000000%20342.000000%22%0A%20preserveAspectRatio%3D%22xMidYMid%20meet%22%3E%0A%0A%3Cg%20transform%3D%22translate(0.000000%2C342.000000)%20scale(0.100000%2C-0.100000)%22%0Afill%3D%22%23000000%22%20stroke%3D%22none%22%3E%0A%3Cpath%20d%3D%22M799%203407%20c-148%20-42%20-265%20-182%20-276%20-331%20-3%20-33%202%20-153%2011%20-266%2026%0A-336%2036%20-620%2036%20-1085%200%20-468%20-10%20-753%20-37%20-1085%20-21%20-257%20-20%20-287%208%20-363%2018%0A-49%2038%20-77%2093%20-133%2092%20-92%20151%20-116%20282%20-117%2081%20-1%2097%203%20157%2031%20123%2057%20221%0A181%20234%20295%203%2023%20-2%20130%20-11%20237%20-53%20640%20-56%201505%20-9%202135%2026%20338%2024%20385%20-14%0A467%20-40%2085%20-114%20161%20-191%20195%20-69%2031%20-209%2041%20-283%2020z%22%2F%3E%0A%3Cpath%20d%3D%22M80%203012%20c-20%20-10%20-42%20-32%20-52%20-52%20-17%20-33%20-18%20-117%20-18%20-1320%200%0A-866%204%20-1297%2011%20-1323%2012%20-43%2059%20-101%20100%20-123%2020%20-10%2064%20-14%20155%20-14%20116%200%0A126%201%20119%2017%20-4%2010%20-14%2045%20-22%2078%20-16%2064%20-16%2073%2011%20420%2048%20616%2044%201535%20-9%0A2138%20-8%2092%20-15%20174%20-15%20182%200%2024%20-233%2021%20-280%20-3z%22%2F%3E%0A%3Cpath%20d%3D%22M1466%202993%20c-7%20-47%20-23%20-239%20-37%20-448%20-5%20-88%20-13%20-383%20-16%20-655%20-7%0A-587%206%20-975%2047%20-1430%2010%20-113%206%20-161%20-25%20-258%20l-7%20-22%201166%202%201167%203%2044%2046%0Ac24%2026%2048%2063%2054%2085%208%2027%2011%20432%2011%201324%200%201203%20-1%201287%20-18%201320%20-37%2075%2048%2070%0A-1234%2070%20l-1146%200%20-6%20-37z%20m2077%20-282%20c15%20-12%2017%20-47%2017%20-321%200%20-288%20-1%20-309%0A-19%20-331%20l-19%20-24%20-789%20-3%20c-579%20-2%20-795%201%20-816%209%20-56%2024%20-57%2027%20-57%20349%200%0A162%204%20301%209%20308%205%208%2024%2018%2042%2022%2019%205%20390%207%20825%207%20654%20-2%20794%20-4%20807%20-16z%0Am-1168%20-1016%20c23%20-22%2025%20-31%2025%20-124%200%20-91%20-2%20-102%20-24%20-128%20-22%20-25%20-31%20-28%0A-103%20-31%20-147%20-7%20-188%2031%20-181%20170%203%2075%205%2081%2036%20109%2031%2028%2037%2029%20128%2029%2087%200%0A97%20-2%20119%20-25z%20m460%201%20c29%20-29%2039%20-76%2033%20-163%20-4%20-59%20-7%20-68%20-37%20-95%20-33%20-29%0A-36%20-30%20-122%20-26%20-81%203%20-90%205%20-118%2032%20-30%2029%20-31%2032%20-31%20127%200%2096%200%2097%2031%20123%0A28%2024%2038%2026%20125%2026%2087%200%2097%20-2%20119%20-24z%20m469%20-7%20c23%20-28%2026%20-39%2026%20-114%200%0A-137%20-26%20-165%20-150%20-165%20-129%200%20-160%2032%20-160%20163%200%2085%201%2090%2029%20118%2029%2028%2032%0A29%20129%2029%20100%200%20100%200%20126%20-31z%20m-951%20-441%20c40%20-21%2046%20-39%2047%20-141%200%20-96%20-1%0A-99%20-29%20-128%20-28%20-28%20-34%20-29%20-116%20-29%20-71%200%20-92%204%20-115%2020%20-38%2027%20-53%2077%20-48%0A162%203%2064%207%2073%2036%2099%2030%2027%2038%2029%20118%2029%2047%200%2095%20-5%20107%20-12z%20m469%201%20c30%20-16%0A48%20-71%2048%20-149%200%20-122%20-27%20-149%20-148%20-150%20-88%200%20-133%2014%20-152%2049%20-5%2011%20-10%2061%0A-10%20111%200%2090%201%2093%2031%20121%2030%2028%2036%2029%20121%2029%2049%200%2098%20-5%20110%20-11z%20m475%20-13%0Ac26%20-23%2028%20-30%2032%20-111%206%20-148%20-17%20-175%20-152%20-175%20-88%200%20-89%200%20-123%2034%20-34%2034%0A-34%2035%20-34%20123%201%20130%2024%20152%20162%20153%2078%200%2090%20-3%20115%20-24z%20m-921%20-469%20c22%20-26%0A24%20-37%2024%20-126%200%20-90%20-2%20-100%20-25%20-125%20-23%20-25%20-29%20-26%20-119%20-26%20-92%200%20-97%201%0A-128%2029%20-33%2029%20-33%2030%20-33%20124%200%2069%204%2099%2015%20112%2028%2034%2071%2045%20158%2043%2078%20-3%2085%0A-5%20108%20-31z%20m438%2022%20c37%20-17%2056%20-67%2056%20-143%200%20-75%20-18%20-129%20-48%20-145%20-12%20-6%0A-62%20-11%20-112%20-11%20-88%200%20-93%201%20-121%2029%20-28%2028%20-29%2033%20-29%20123%201%20101%207%20117%2056%0A143%2035%2018%20161%2020%20198%204z%20m465%20-4%20c41%20-21%2054%20-61%2050%20-159%20-4%20-73%20-7%20-88%20-28%0A-110%20-23%20-25%20-30%20-26%20-122%20-26%20-96%200%20-98%201%20-128%2031%20-30%2029%20-31%2034%20-31%20118%200%0A95%2016%20132%2064%20151%2035%2015%20164%2011%20195%20-5z%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A") no-repeat;
+    background-size: contain;
+}
+.tel-validator__telephone::after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 185px;
+    left: 220px;
+    height: 180px;
+    width: 220px;
+    background-color: #000;
+}
+.tel-validator__input {
+    position: relative;
+    top: 86px;
+    left: 224px;
+    height: 86px;
+    width: 220.08px;
+    font-size: 26px;
+    border-radius: 14px;
+    padding: 0 8px;
+}
+.tel-validator__input:focus, .tel-validator__input:focus{
+    outline: none;
+}
+.tel-validator-digits {
+    position: relative;
+    display: grid;
+    grid-template-columns: 35px 35px 35px;
+    gap: 17px 25px;
+    top: 110px;
+    left: 255.5px;
+    width: fit-content;
+    z-index: 5;
+}
+.tel-validator-digits button {
+    display: block;
+    height: 35px;
+    width: 35px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.tel-validator-digit-0 {
+    grid-column: 2;
+}
+.tel-validator__buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+#check-btn, #clear-btn {
+    height: 35px;
+    width: 192px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+}
+#check-btn {
+    background-color: green;
+}
+#clear-btn {
+    background-color: darkgray;
+}
+.tel-validator__results {
+    display: flex;
+    height: 90px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 4px solid black;
+    border-radius: 8px;
+    margin: 35px auto 10px;
+}
+.green {
+    background-color: rgb(4, 212, 39);
+}
+.red {
+    background-color: rgb(248, 46, 32);
+}
+.hidden {
+    display: none;
+}
+@media (max-width: 480px) {
+    .tel-validator__telephone {
+        height: 280px;
+        width: 320px;
+        margin: 0 auto;
+    }
+    .tel-validator__input {
+        top: 56px;
+        left: 147px;
+        height: 58px;
+        width: 154px;
+        font-size: 18px;
+    }
+    .tel-validator__telephone::after {
+        top: 122px;
+        left: 171px;
+        height: 136px;
+        width: 134px;
+    }
+    .tel-validator-digits {
+        gap: 10px 12px;
+        top: 71px;
+        left: 163px;
+    }
+    .tel-validator-digits button {
+        height: 25px;
+        width: 25px;
+    }
+    .tel-validator__buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px 0;
+        padding: 0 5px;
+    }
+    #check-btn, #clear-btn {
+        width: 300px;
+    }
+}
+
+** end of undefined **
+
